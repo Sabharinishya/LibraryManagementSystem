@@ -9,9 +9,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 @MappedSuperclass
 public abstract class BaseEntity {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	
+
 	@Column
 	private LocalDateTime createdAt = LocalDateTime.now();
 	private LocalDateTime updatedAt;
@@ -24,9 +23,6 @@ public abstract class BaseEntity {
 		this.updatedAt = updatedAt;
 	}
 
-	public long getId() {
-		return id;
-	}
 
 	public LocalDateTime getCreatedAt() {
 		return createdAt;

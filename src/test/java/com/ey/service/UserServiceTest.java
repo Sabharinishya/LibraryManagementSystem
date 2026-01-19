@@ -1,17 +1,22 @@
 package com.ey.service;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+
 import java.util.Optional;
-import com.ey.entity.User;
-import com.ey.enums.Role;
-import com.ey.enums.UserStatus;
-import com.ey.repository.UserRepository;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+
+import com.ey.entity.User;
+import com.ey.enums.Role;
+import com.ey.enums.UserStatus;
+import com.ey.repository.UserRepository;
 
 @SpringBootTest
 class UserServiceTest {
