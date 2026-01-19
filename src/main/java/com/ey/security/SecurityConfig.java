@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
 @EnableMethodSecurity
 @Configuration
 public class SecurityConfig {
@@ -36,7 +37,8 @@ public class SecurityConfig {
 		authFilter.setFilterProcessesUrl("/api/auth/login");
 		http.csrf(csrf -> csrf.disable())
 				.authorizeHttpRequests(
-						auth -> auth.requestMatchers("/api/auth/**").permitAll().anyRequest().authenticated())
+						auth -> auth.requestMatchers("/api/auth/login", "/api/auth/register", "/api/auth/logout")
+								.permitAll().anyRequest().authenticated())
 				.addFilter(authFilter)
 				.addFilterBefore(new JWTAuthorizationFilter(jwtUtil, userDetailsService),
 						UsernamePasswordAuthenticationFilter.class)

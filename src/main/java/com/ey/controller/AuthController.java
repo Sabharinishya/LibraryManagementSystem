@@ -33,7 +33,7 @@ public class AuthController {
 	@PostMapping("/register")
 	public ResponseEntity<ApiResponse<UserResponse>> register(@Valid @RequestBody RegisterRequest request) {
 		if (userService.emailExists(request.getEmail())) {
-			return ResponseEntity.badRequest().body(new ApiResponse<>(false,"Email already exists"));
+			return ResponseEntity.badRequest().body(new ApiResponse<>(false, "Email already exists"));
 		}
 		User user = authService.register(request);
 		UserResponse response = new UserResponse();
@@ -50,14 +50,20 @@ public class AuthController {
 	public ResponseEntity<ApiResponse<AuthResponse>> login(@Valid @RequestBody LoginRequest request) {
 		Optional<User> userOpt = userService.findByEmail(request.getEmail());
 		if (userOpt.isEmpty()) {
-			return ResponseEntity.status(401).body(new ApiResponse<>(false,"Invalid email or password"));
+			return ResponseEntity.status(401).body(new ApiResponse<>(false, "Invalid email or password"));
 		}
 		User user = userOpt.get();
 		boolean valid = authService.validatePassword(request.getPassword(), user.getPassword());
 		if (!valid) {
-			return ResponseEntity.status(401).body(new ApiResponse<>(false,"Invalid email or password"));
+			return ResponseEntity.status(401).body(new ApiResponse<>(false, "Invalid email or password"));
 		}
 		AuthResponse response = new AuthResponse("LOGIN_SUCCESS");
 		return ResponseEntity.ok(new ApiResponse<>(true, response));
+	}
+
+	@PostMapping("/logout")
+	public ResponseEntity<?> logout() {
+		return ResponseEntity.ok().body(java.util.Map.of("success", true, "message",
+				"Logged out successfully. Please remove token from client."));
 	}
 }
