@@ -60,5 +60,11 @@ public class Fine extends BaseEntity {
    public void setPaidAt(LocalDateTime paidAt) {
 	this.paidAt = paidAt;
    }
+   public Long getId() {
+	return id;
+   }
+   public void setId(Long id) {
+	this.id = id;
+   }
    
 }

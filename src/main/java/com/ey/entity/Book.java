@@ -19,8 +19,11 @@ public class Book extends BaseEntity {
 	private String authors;
 	@Column(nullable = false, unique = true)
 	private String isbn;
+	@Column(nullable = false)
 	private String category;
+	@Column(nullable = false)
 	private String language;
+	@Column(nullable = false)
 	private Integer publishedYear;
 
 	public String getTitle() {

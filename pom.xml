@@ -102,6 +102,11 @@
 <target>17</target>
 </configuration>
 </plugin>
+<dependency>
+<groupId>com.h2database</groupId>
+<artifactId>h2</artifactId>
+<scope>test</scope>
+</dependency>
 <!-- Spring Boot Plugin -->
 <plugin>
 <groupId>org.springframework.boot</groupId>
